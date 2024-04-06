@@ -1,0 +1,51 @@
+[11:02] NIDHI NEVREKAR - 70522200068
+package com.example.foodapp;
+
+import android.content.Intent;
+
+import android.os.Bundle;
+
+import android.widget.TextView;
+
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity3 extends AppCompatActivity {
+
+private TextView totalAmountTextView;
+
+private TextView totalAmountValueTextView;
+@Override
+
+protected void onCreate(Bundle savedInstanceState) {
+
+super.onCreate(savedInstanceState);
+
+setContentView(R.layout.activity_main3);
+
+totalAmountTextView = findViewById(R.id.total_amount_text_view);
+
+totalAmountValueTextView = findViewById(R.id.total_amount_value_text_view);
+
+// Get the total amount from the intent
+
+Intent intent = getIntent();
+
+double totalAmount = intent.getDoubleExtra("TOTAL_AMOUNT", 0);
+
+// Display the total amount
+
+totalAmountValueTextView.setText(String.valueOf(totalAmount));
+
+// Display the total amount
+
+totalAmountValueTextView.setText(String.valueOf(totalAmount));
+
+// Display a thank you message
+
+Toast.makeText(this, "Order Placed!", Toast.LENGTH_SHORT).show();
+
+}
+
+}
