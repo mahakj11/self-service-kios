@@ -1,0 +1,46 @@
+[11:01] NIDHI NEVREKAR - 70522200068
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+android:layout_width="match_parent"
+
+android:layout_height="match_parent"
+
+android:background="@color/grey"
+
+android:padding="16dp">
+
+<TextView
+
+android:id="@+id/total_amount_text_view"
+
+android:layout_width="wrap_content"
+
+android:layout_height="wrap_content"
+
+android:text="Total Amount: "
+
+android:textSize="24sp"
+
+android:textColor="@color/black" />
+
+<TextView
+
+android:id="@+id/total_amount_value_text_view"
+
+android:layout_width="wrap_content"
+
+android:layout_height="wrap_content"
+
+android:text="0"
+
+android:textSize="24sp"
+
+android:textColor="@color/black"
+
+android:layout_toRightOf="@id/total_amount_text_view"
+
+android:layout_marginLeft="16dp" />
+
+</RelativeLayout>
