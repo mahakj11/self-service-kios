@@ -1,92 +1,62 @@
-[11:00] NIDHI NEVREKAR - 70522200068
 package com.example.foodapp;
-
-import android.content.Intent;
-
-import android.os.Bundle;
-
-import android.view.View;
-
-import android.widget.Button;
-
-import android.widget.EditText;
-
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity2 extends AppCompatActivity {
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.Button;
+import android.content.Intent;
+import android.widget.Toast;
 
-private TextView totalAmountTextView;
+public class MainActivity extends AppCompatActivity {
 
-private TextView totalAmountValueTextView;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        // Initialize the checkboxes and button
+        CheckBox chkChowmein = findViewById(R.id.chkChowmein);
+        CheckBox chkPizza = findViewById(R.id.chkPizza);
+        CheckBox chkPasta = findViewById(R.id.chkPasta);
+        CheckBox chkNachos = findViewById(R.id.chkNachos);
+        CheckBox chkMojito = findViewById(R.id.chkMojito);
+        CheckBox chkOreoShake = findViewById(R.id.chkOreoShake);
+        Button btnForward = findViewById(R.id.btnForward);
 
-private EditText tipEditText;
+        // Set a click listener for the button
+        btnForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Calculate the total amount
+                int totalAmount = 0;
+                if (chkChowmein.isChecked()) {
+                    totalAmount += 250;
+                }
+                if (chkPizza.isChecked()) {
+                    totalAmount += 380;
+                }
+                if (chkPasta.isChecked()) {
+                    totalAmount += 290;
+                }
+                if (chkNachos.isChecked()) {
+                    totalAmount += 300;
+                }
+                if (chkMojito.isChecked()) {
+                    totalAmount += 300;
+                }
+                if (chkOreoShake.isChecked()) {
+                    totalAmount += 300;
+                }
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                intent.putExtra("Total_AMOUNT",totalAmount);
+                startActivity(intent);
+                Toast.makeText(MainActivity.this, String.valueOf(totalAmount), Toast.LENGTH_SHORT).show();
 
-private Button finalButton;
-@Override
-
-protected void onCreate(Bundle savedInstanceState) {
-
-super.onCreate(savedInstanceState);
-
-setContentView(R.layout.activity_main2);
-
-totalAmountTextView = findViewById(R.id.total_amount_text_view);
-
-totalAmountValueTextView = findViewById(R.id.total_amount_value_text_view);
-
-tipEditText = findViewById(R.id.tip_edit_text);
-
-finalButton = findViewById(R.id.final_button);
-
-// Get the total amount from the intent
-
-Intent intent = getIntent();
-
-int totalAmount = intent.getIntExtra("TOTAL_AMOUNT", 0);
-
-// Display the total amount
-
-totalAmountValueTextView.setText(String.valueOf(totalAmount));
-
-// Set up the final button click listener
-
-finalButton.setOnClickListener(new View.OnClickListener() {
-@Override
-
-public void onClick(View v) {
-
-// Get the tip percentage
-
-try {
-
-double tip = Double.parseDouble(tipEditText.getText().toString());
-
-// Calculate the tip amount
-
-double tipAmount = totalAmount+tip;
-
-// Calculate the final amount
-
-double finalAmount = totalAmount + tipAmount;
-
-Intent intent = new Intent(MainActivity2.this, MainActivity3.class);
-
-intent.putExtra("FINAL_AMOUNT", finalAmount); // Pass the final amount
-
-startActivity(intent);
-
-} catch (NumberFormatException e) {
-
-throw new RuntimeException(e);
-
-}
-
-}
-
-});
-
-}
+            }
+        });
+    }
 
 }
